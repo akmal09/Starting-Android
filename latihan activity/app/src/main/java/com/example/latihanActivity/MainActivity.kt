@@ -39,9 +39,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    companion object {
-        private const val STATE_RESULT = "state_result"
-    }
+//    companion object {
+//        private const val STATE_RESULT = "state_result"
+//    }
 
 
     override fun onSaveInstanceState(outState: Bundle) {

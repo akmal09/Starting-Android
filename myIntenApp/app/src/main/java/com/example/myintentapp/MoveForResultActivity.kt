@@ -1,4 +1,4 @@
-package com.dicoding.picodiploma.myintentapp
+package com.example.myintentapp
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,7 +6,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.RadioGroup
 import androidx.appcompat.app.AppCompatActivity
-import com.example.myintentapp.R
+
 
 class MoveForResultActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -34,18 +34,10 @@ class MoveForResultActivity : AppCompatActivity(), View.OnClickListener {
                 var value = 0
                 when (rgNumber.checkedRadioButtonId) {
                     R.id.rb_50 -> value = 50
-
                     R.id.rb_100 -> value = 100
-
                     R.id.rb_150 -> value = 150
-
                     R.id.rb_200 -> value = 200
                 }
-
-                /*
-                Intent ini digunakan untuk mengirimkan kembali ke activity induk
-                Perhatikan bahwa kita mencantumkan RESULT_CODE ke dalam metode setResult
-                 */
 
                 val resultIntent = Intent()
                 resultIntent.putExtra(EXTRA_SELECTED_VALUE, value)

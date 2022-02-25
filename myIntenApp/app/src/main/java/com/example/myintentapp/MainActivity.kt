@@ -8,7 +8,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import com.dicoding.picodiploma.myintentapp.MoveForResultActivity
+//import com.dicoding.picodiploma.myintentapp.MoveForResultActivity
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 

@@ -25,7 +25,7 @@ class ListHeroAdapter(private val listHero: ArrayList<Hero>) : RecyclerView.Adap
         holder.imgPhoto.setImageResource(photo)
         holder.tvName.text = name
         holder.tvDescription.text = description
-        holder.itemView.setOnClickListener{
+        holder.imgPhoto.setOnClickListener{
             onItemClickCallback.onItemClicked(listHero[holder.adapterPosition])
         }
     }

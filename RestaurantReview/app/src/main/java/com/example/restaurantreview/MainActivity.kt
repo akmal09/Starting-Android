@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun postReview(review: String) {
         showLoading(true)
-        val client = ApiConfig.getApiService().postReview(RESTAURANT_ID, "Dicoding", review)
+        val client = ApiConfig.getApiService().postReviewApi(RESTAURANT_ID, "ozan", review)
         client.enqueue(object : Callback<PostReviewResponse> {
             override fun onResponse(
                 call: Call<PostReviewResponse>,

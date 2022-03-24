@@ -11,17 +11,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var showUser: RecyclerView
     private val listInject = ArrayList<User>()
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        showUser = findViewById(R.id.list_users)
-        showUser.setHasFixedSize(true)
-        listInject.addAll(listUsers)
-
-        showRecyclerList()
-    }
-
     private val listUsers: ArrayList<User>
         get() {
             val dataUserName = resources.getStringArray(R.array.username)
@@ -44,6 +33,17 @@ class MainActivity : AppCompatActivity() {
             return listUser
         }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        showUser = findViewById(R.id.list_users)
+        showUser.setHasFixedSize(true)
+        listInject.addAll(listUsers)
+
+        showRecyclerList()
+    }
+
     private fun showRecyclerList() {
         showUser.layoutManager = LinearLayoutManager(this)
         val listUserAdapter = UsersAdapter(listInject)
@@ -61,6 +61,5 @@ class MainActivity : AppCompatActivity() {
         val moveToDetail = Intent(this@MainActivity, DetailUser::class.java)
         moveToDetail.putExtra(DetailUser.EXTRA_PERSON, user)
         startActivity(moveToDetail)
-
     }
 }

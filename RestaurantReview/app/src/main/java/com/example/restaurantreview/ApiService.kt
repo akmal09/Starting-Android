@@ -12,7 +12,7 @@ interface ApiService {
     @FormUrlEncoded
     @Headers("Authorization: token 12345")
     @POST("review")
-    fun postReview(
+    fun postReviewApi(
         @Field("id") id: String,
         @Field("name") name: String,
         @Field("review") review: String

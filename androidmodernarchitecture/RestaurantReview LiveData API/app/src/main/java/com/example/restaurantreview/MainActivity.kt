@@ -27,7 +27,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportActionBar?.hide()
-
         val mainViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(MainViewModel::class.java)
         mainViewModel.restaurant.observe(this, { restaurant ->
             setRestaurantData(restaurant)

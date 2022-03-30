@@ -30,9 +30,11 @@ class DetailUserActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val userSearch = intent.getParcelableExtra<ItemsItem>(EXTRA_PERSON) as ItemsItem
-        showLoading(true)
-
         detailUserActivityViewModel = ViewModelProvider(this@DetailUserActivity).get(DetailUserActivityViewModel::class.java)
+        detailUserActivityViewModel.isloading.observe(this, {
+            showLoading(it)
+        })
+
         detailUserActivityViewModel.setUserDetail(userSearch.url)
         detailUserActivityViewModel.getUserDetail().observe(this,{
             binding.apply {
@@ -54,14 +56,12 @@ class DetailUserActivity : AppCompatActivity() {
         detailUserActivityViewModel.getTotalUsersFollowing().observe(this,{
             binding.following.text ="$it Following"
         })
-
         val sectionsPagerAdapter = SectionsPagerAdapter(this,userSearch.login)
         binding.viewPager.adapter = sectionsPagerAdapter
         TabLayoutMediator(binding.tabs, binding.viewPager){tab, position ->
             tab.text = resources.getString(JUDUL_TAB[position])
         }.attach()
         supportActionBar?.elevation = 0f
-        showLoading(false)
 
     }
 

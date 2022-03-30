@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.submission3project.DetailUserActivity">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/ava_photo_detail"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="148dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        card_view:layout_constraintBottom_toBottomOf="parent"
+        card_view:layout_constraintStart_toStartOf="parent"
+        card_view:layout_constraintTop_toTopOf="parent"
+        card_view:layout_constraintVertical_bias="0.0"
+        tools:src="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/name"
+        style="@style/text_rules"
+        android:layout_marginTop="4dp"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        card_view:layout_constraintEnd_toEndOf="parent"
+        card_view:layout_constraintHorizontal_bias="0.464"
+        card_view:layout_constraintStart_toStartOf="parent"
+        card_view:layout_constraintTop_toBottomOf="@+id/ava_photo_detail"
+        tools:text="@string/name" />
+
+    <TextView
+        android:id="@+id/user_name"
+        style="@style/text_rules"
+        android:layout_marginTop="8dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        card_view:layout_constraintEnd_toEndOf="parent"
+        card_view:layout_constraintHorizontal_bias="0.465"
+        card_view:layout_constraintStart_toStartOf="parent"
+        card_view:layout_constraintTop_toBottomOf="@+id/name"
+        tools:text="@string/user_name" />
+
+    <TextView
+        android:id="@+id/followers"
+        style="@style/text_rules_child"
+
+        android:layout_marginTop="8dp"
+        card_view:layout_constraintEnd_toEndOf="parent"
+        card_view:layout_constraintHorizontal_bias="0.477"
+        card_view:layout_constraintStart_toStartOf="parent"
+        card_view:layout_constraintTop_toBottomOf="@+id/location_detail"
+        tools:text="@string/followers" />
+
+    <TextView
+        android:id="@+id/following"
+        style="@style/text_rules_child"
+        android:layout_marginStart="36dp"
+        card_view:layout_constraintBottom_toBottomOf="@+id/followers"
+        card_view:layout_constraintStart_toEndOf="@+id/followers"
+        tools:text="@string/following" />
+
+    <TextView
+        android:id="@+id/repository"
+        style="@style/text_rules_child"
+        android:layout_marginEnd="36dp"
+        android:textAlignment="center"
+        card_view:layout_constraintBottom_toBottomOf="@+id/followers"
+        card_view:layout_constraintEnd_toStartOf="@+id/followers"
+        tools:text="@string/repository" />
+
+    <TextView
+        android:id="@+id/location_detail"
+        style="@style/text_rules_child"
+        android:layout_marginTop="8dp"
+        card_view:layout_constraintEnd_toEndOf="parent"
+        card_view:layout_constraintHorizontal_bias="0.477"
+        card_view:layout_constraintStart_toStartOf="parent"
+        card_view:layout_constraintTop_toBottomOf="@+id/company_detail"
+        tools:text="@string/location" />
+
+    <TextView
+        android:id="@+id/company_detail"
+        style="@style/text_rules_child"
+        android:layout_marginTop="8dp"
+
+        card_view:layout_constraintEnd_toEndOf="parent"
+        card_view:layout_constraintHorizontal_bias="0.477"
+        card_view:layout_constraintStart_toStartOf="parent"
+        card_view:layout_constraintTop_toBottomOf="@+id/user_name"
+        tools:text="@string/company" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorSecondary"
+        app:tabTextColor="@android:color/white"
+        card_view:layout_constraintTop_toBottomOf="@+id/followers" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/view_pager"
+        android:layout_width="414dp"
+        android:layout_height="373dp"
+        card_view:layout_constraintBottom_toBottomOf="parent"
+        card_view:layout_constraintEnd_toEndOf="parent"
+        card_view:layout_constraintStart_toStartOf="parent"
+        card_view:layout_constraintTop_toBottomOf="@+id/tabs"
+        card_view:layout_constraintVertical_bias="0.0"
+        tools:text="lis" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:foregroundGravity="center_horizontal"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        card_view:layout_constraintHorizontal_bias="0.484"
+        card_view:layout_constraintVertical_bias="0.225" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/like_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_favorite_border_24"
+        app:fabSize="normal"
+        card_view:layout_constraintBottom_toBottomOf="parent"
+        card_view:layout_constraintEnd_toEndOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

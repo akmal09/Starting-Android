@@ -15,14 +15,18 @@ import retrofit2.Response
 
 class DetailUserActivityViewModel: ViewModel() {
 
+    private val privateIsLoading = MutableLiveData<Boolean>()
+    val isloading: LiveData<Boolean> = privateIsLoading
+
     val userDetail = MutableLiveData<UserDetail>()
     val totalFollowersUserUrl = MutableLiveData<String>()
     val totalFollowingUserUrl = MutableLiveData<String>()
     val totalRepositoryUrl = MutableLiveData<String>()
 
     fun setUserDetail(userData: String) {
+        privateIsLoading.value = true
         val client = AsyncHttpClient()
-        client.addHeader("Authorization", "token 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")
+        client.addHeader("Authorization", "token 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")
         client.addHeader("User-Agent", "request")
         client.get(userData, object : AsyncHttpResponseHandler() {
             override fun onSuccess(statusCode: Int, headers: Array<out Header>?, responseBody: ByteArray) {
@@ -39,6 +43,7 @@ class DetailUserActivityViewModel: ViewModel() {
 
                     val userInstance= UserDetail(login,name,company,location, repos_url,followersUrl, ava)
                     userDetail.postValue(userInstance)
+                    privateIsLoading.value = false
                 } catch (e: Exception) {
 
                 }
@@ -49,6 +54,7 @@ class DetailUserActivityViewModel: ViewModel() {
                 responseBody: ByteArray?,
                 error: Throwable?
             ) {
+                privateIsLoading.value = false
                 val errorMessage = when (statusCode) {
                     401 -> "$statusCode : Bad Request"
                     403 -> "$statusCode : Forbidden"
@@ -93,7 +99,7 @@ class DetailUserActivityViewModel: ViewModel() {
                 Log.e(TAG, errorMessage)
             }
         })
-        accessFollowers.addHeader("Authorization", "token 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")
+        accessFollowers.addHeader("Authorization", "token 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")
         accessFollowers.addHeader("User-Agent","request")
     }
 
@@ -153,7 +159,7 @@ class DetailUserActivityViewModel: ViewModel() {
                 Log.e(TAG, errorMessage)
             }
         })
-        repoAccess.addHeader("Authorization", "token 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")
+        repoAccess.addHeader("Authorization", "token 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")
         repoAccess.addHeader("User-Agent", "request")
     }
 

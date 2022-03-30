@@ -31,7 +31,7 @@ class MainViewModel: ViewModel() {
                         listItems.postValue(listItemsItem)
                     }
                 }else{
-//                Log.e(MainActivity.TAG, "onFailure: ${response.message()}")
+                Log.e(TAG, "onFailure: ${response.message()}")
                 }
 
             }
@@ -43,6 +43,10 @@ class MainViewModel: ViewModel() {
 
     fun getUserSearch(): LiveData<List<ItemsItem>> {
         return listItems
+    }
+
+    companion object{
+        private val TAG =FollowingViewModel::class.java.simpleName
     }
 }
 

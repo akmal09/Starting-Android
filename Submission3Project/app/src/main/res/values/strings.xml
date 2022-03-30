@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">GitHub User App</string>
+    <string name="company">company</string>
+    <string name="location">location</string>
+    <string name="name">nama</string>
+    <string name="object_received">objek diterima</string>
+    <string name="repository">repository</string>
+    <string name="following">following</string>
+    <string name="followers">followers</string>
+    <string name="user_name">userName</string>
+    <string name="search">Search User</string>
+    <string name="search_hint">Search User</string>
+    <string name="tab_followers">Followers</string>
+    <string name="tab_following">Following</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="liked">Your Favorite</string>
+    <string name="setting">Setting</string>
+    <string name="dark_mode">Mode Gelap</string>
+</resources>

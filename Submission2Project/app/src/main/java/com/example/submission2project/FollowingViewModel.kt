@@ -9,9 +9,13 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class FollowingViewModel: ViewModel() {
+
     private val listFollowing = MutableLiveData<ArrayList<UserFfAdapter>>()
+    private val privateIsLoading = MutableLiveData<Boolean>()
+    val isloading: LiveData<Boolean> = privateIsLoading
 
     fun setUserFollowing(userLogin:String) {
+        privateIsLoading.value = true
         val getFollowing = ApiConfig.getApiService().getUsersFollowing(userLogin)
         getFollowing.enqueue(object : Callback<List<UserDataObject>> {
             override fun onResponse(
@@ -26,6 +30,7 @@ class FollowingViewModel: ViewModel() {
                         listFfObject.add(ffAdapterObject)
                     }
                     listFollowing.postValue(listFfObject)
+                    privateIsLoading.value = false
                 }else{
                     Log.e(TAG,"onFailure: ${response.message()}")
                 }

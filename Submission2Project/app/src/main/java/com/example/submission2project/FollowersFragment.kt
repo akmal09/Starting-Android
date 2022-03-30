@@ -31,7 +31,9 @@ class FollowersFragment(private val userLogin: String) : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         followersViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(FollowersViewModel::class.java)
-        followersViewModel =ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(FollowersViewModel::class.java)
+        followersViewModel.isloading.observe(viewLifecycleOwner,{
+            showLoading(it)
+        })
         followersViewModel.setFollowers(userLogin)
         followersViewModel.getFollowers().observe(viewLifecycleOwner, {listFollowers->
             setFFAdapterFollowers(listFollowers)
@@ -45,6 +47,14 @@ class FollowersFragment(private val userLogin: String) : Fragment() {
         binding.listFollowers.layoutManager = layoutManager
         val ffAdapter = FfAdapter(listFfObject)
         binding.listFollowers.adapter = ffAdapter
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        if (isLoading) {
+            binding.progressBar.visibility = View.VISIBLE
+        }else{
+            binding.progressBar.visibility = View.GONE
+        }
     }
 
     companion object{

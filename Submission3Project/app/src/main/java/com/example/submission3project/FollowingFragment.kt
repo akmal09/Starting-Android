@@ -13,7 +13,7 @@ import com.example.submission3project.databinding.FragmentFollowingBinding
 import com.example.submission3project.viewmodel.FollowingViewModel
 
 
-class FollowingFragment(private val userLogin: String) : Fragment() {
+class FollowingFragment() : Fragment() {
 
     private lateinit var binding:FragmentFollowingBinding
     private lateinit var followingViewModel: FollowingViewModel
@@ -28,18 +28,25 @@ class FollowingFragment(private val userLogin: String) : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val userLogin = arguments?.getString(ARG_USER)
         followingViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
             FollowingViewModel::class.java)
-        followingViewModel.isloading.observe(this,{
+        followingViewModel.isloading.observe(viewLifecycleOwner,{
             showLoading(it)
         })
         followingViewModel.setUserFollowing(userLogin)
         followingViewModel.getUserFollowing().observe(viewLifecycleOwner, { listUserFollowing ->
             setFFAdapterFollowing(listUserFollowing)
         })
+//        if (savedInstanceState == null) {
+//            followingViewModel.setUserFollowing(ARG_USER)
+//            followingViewModel.getUserFollowing().observe(viewLifecycleOwner, { listUserFollowing ->
+//                setFFAdapterFollowing(listUserFollowing)
+//            })
+//        }
     }
 
-    private fun setFFAdapterFollowing(listFfObject: ArrayList<UserFfAdapter>) {
+    private fun setFFAdapterFollowing(listFfObject: List<UserFfAdapter>) {
         binding.listFollowing.setHasFixedSize(true)
         val layoutManager = LinearLayoutManager(activity)
         binding.listFollowing.layoutManager = layoutManager
@@ -52,6 +59,19 @@ class FollowingFragment(private val userLogin: String) : Fragment() {
             binding.progressBar.visibility = View.VISIBLE
         }else{
             binding.progressBar.visibility = View.GONE
+        }
+    }
+
+    companion object{
+        private val ARG_USER = "userLogin"
+
+        fun newInstance(userLogin: String?): FollowingFragment {
+            val fragment = FollowingFragment()
+            val bundle = Bundle()
+            bundle.putString(ARG_USER, userLogin)
+            fragment.arguments = bundle
+
+            return fragment
         }
     }
 }

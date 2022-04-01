@@ -13,7 +13,7 @@ import com.example.submission3project.data.api.UserFfAdapter
 import com.example.submission3project.databinding.FragmentFollowersBinding
 import com.example.submission3project.viewmodel.FollowersViewModel
 
-class FollowersFragment(private val userLogin: String) : Fragment() {
+class FollowersFragment() : Fragment() {
 
     private lateinit var binding: FragmentFollowersBinding
     private lateinit var followersViewModel: FollowersViewModel
@@ -28,6 +28,7 @@ class FollowersFragment(private val userLogin: String) : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val userLogin = arguments?.getString(ARG_USER)
         followersViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
             FollowersViewModel::class.java)
         followersViewModel.isloading.observe(viewLifecycleOwner,{
@@ -37,9 +38,16 @@ class FollowersFragment(private val userLogin: String) : Fragment() {
         followersViewModel.getFollowers().observe(viewLifecycleOwner, {listFollowers->
             setFFAdapterFollowers(listFollowers)
         })
+
+//        if (savedInstanceState == null) {
+//            followersViewModel.setFollowers(ARG_USER)
+//            followersViewModel.getFollowers().observe(viewLifecycleOwner, {listFollowers->
+//                setFFAdapterFollowers(listFollowers)
+//            })
+//        }
     }
 
-    private fun setFFAdapterFollowers(listFfObject : ArrayList<UserFfAdapter>) {
+    private fun setFFAdapterFollowers(listFfObject : List<UserFfAdapter>) {
         binding.listFollowers.setHasFixedSize(true)
         Log.d(TAG, "berhasil kirim ${listFfObject.size}")
         val layoutManager = LinearLayoutManager(activity)
@@ -58,5 +66,14 @@ class FollowersFragment(private val userLogin: String) : Fragment() {
 
     companion object{
         private val TAG = DetailUserActivity::class.java.simpleName
+
+        private val ARG_USER = "userLogin"
+        fun newInstance(userLogin: String?): FollowersFragment {
+            val fragment = FollowersFragment()
+            val bundle = Bundle()
+            bundle.putString(ARG_USER, userLogin)
+            fragment.arguments = bundle
+            return fragment
+        }
     }
 }

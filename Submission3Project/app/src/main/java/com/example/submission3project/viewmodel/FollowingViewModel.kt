@@ -13,11 +13,11 @@ import retrofit2.Response
 
 class FollowingViewModel: ViewModel() {
 
-    private val listFollowing = MutableLiveData<ArrayList<UserFfAdapter>>()
+    private val listFollowing = MutableLiveData<List<UserFfAdapter>>()
     private val privateIsLoading = MutableLiveData<Boolean>()
     val isloading: LiveData<Boolean> = privateIsLoading
 
-    fun setUserFollowing(userLogin:String) {
+    fun setUserFollowing(userLogin:String?) {
         privateIsLoading.value = true
         val getFollowing = ApiConfig.getApiService().getUsersFollowing(userLogin)
         getFollowing.enqueue(object : Callback<List<UserDataObject>> {
@@ -35,17 +35,17 @@ class FollowingViewModel: ViewModel() {
                     listFollowing.postValue(listFfObject)
                     privateIsLoading.value = false
                 }else{
-                    Log.e(TAG,"onFailure: ${response.message()}")
+                    Log.e(TAG,"onFailure response: ${response.message()}")
                 }
             }
 
             override fun onFailure(call: Call<List<UserDataObject>>, t: Throwable) {
-                Log.e(TAG, "onFailure: ${t.message}")
+                Log.e(TAG, "onFailure gagal respon: ${t.message}")
             }
         })
     }
 
-    fun getUserFollowing(): LiveData<ArrayList<UserFfAdapter>> {
+    fun getUserFollowing(): LiveData<List<UserFfAdapter>> {
         return listFollowing
     }
 

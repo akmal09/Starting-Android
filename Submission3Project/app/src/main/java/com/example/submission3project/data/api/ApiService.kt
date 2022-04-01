@@ -4,7 +4,7 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface ApiService {
-    @Headers("Authorization: token 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")
+    @Headers("Authorization: token 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")
     @GET("search/users")
     fun getSearchQuery(
         @Query("q") login: String
@@ -12,11 +12,11 @@ interface ApiService {
 
     @GET("users/{login}/following")
     fun getUsersFollowing(
-        @Path("login") login: String
+        @Path("login") login: String?
     ): Call<List<UserDataObject>>
 
     @GET("users/{login}/followers")
     fun getUserFollowers(
-        @Path("login") login:String
+        @Path("login") login:String?
     ): Call<List<UserDataObject>>
 }

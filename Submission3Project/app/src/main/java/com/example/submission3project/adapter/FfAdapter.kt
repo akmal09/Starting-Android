@@ -7,7 +7,7 @@ import com.bumptech.glide.Glide
 import com.example.submission3project.data.api.UserFfAdapter
 import com.example.submission3project.databinding.FfAdapterBinding
 
-class FfAdapter(private val listFfObject : ArrayList<UserFfAdapter>): RecyclerView.Adapter<FfAdapter.ListViewHolder>() {
+class FfAdapter(private val listFfObject : List<UserFfAdapter>): RecyclerView.Adapter<FfAdapter.ListViewHolder>() {
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ListViewHolder {
         val bindingLayer = FfAdapterBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)

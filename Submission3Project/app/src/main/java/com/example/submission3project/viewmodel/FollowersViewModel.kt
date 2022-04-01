@@ -13,11 +13,11 @@ import retrofit2.Response
 
 class FollowersViewModel : ViewModel() {
 
-    private val listFollowers = MutableLiveData<ArrayList<UserFfAdapter>>()
+    private val listFollowers = MutableLiveData<List<UserFfAdapter>>()
     private val privateIsLoading = MutableLiveData<Boolean>()
     val isloading: LiveData<Boolean> = privateIsLoading
 
-    fun setFollowers(userLogin: String){
+    fun setFollowers(userLogin: String?){
         privateIsLoading.value = true
         val getFollowers = ApiConfig.getApiService().getUserFollowers(userLogin)
         getFollowers.enqueue(object : Callback<List<UserDataObject>> {
@@ -44,7 +44,7 @@ class FollowersViewModel : ViewModel() {
         })
     }
 
-    fun getFollowers(): LiveData<ArrayList<UserFfAdapter>> {
+    fun getFollowers(): LiveData<List<UserFfAdapter>> {
         return listFollowers
     }
 

@@ -2,6 +2,7 @@ package com.example.submission3project
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.StringRes
@@ -30,6 +31,7 @@ class DetailUserActivity : AppCompatActivity() {
             R.string.tab_followers,
             R.string.tab_following
         )
+        private val TAG = DetailUserActivity::class.java.simpleName
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,9 +62,10 @@ class DetailUserActivity : AppCompatActivity() {
             reposUrl = it.repos_url
             totalRepos(reposUrl)
         })
-        detailUserViewModel.setCountFollowing(userSearch.login)
+        detailUserViewModel.setCountFollowing(userSearch.login!!)
         detailUserViewModel.getTotalUsersFollowing().observe(this,{
-            binding.following.text ="$it Following"
+            val following = getString(R.string.following)
+            binding.following.text ="$it $following"
         })
         val sectionsPagerAdapter = SectionsPagerAdapter(this,userSearch.login)
         binding.viewPager.adapter = sectionsPagerAdapter
@@ -106,14 +109,17 @@ class DetailUserActivity : AppCompatActivity() {
     fun totalUsersFollowers(followersUrl:String){
         detailUserViewModel.setCountFollowers(followersUrl)
         detailUserViewModel.getTotalUsersFollowers().observe(this,{
-            binding.followers.text = "$it Followers"
+            val followers = getString(R.string.followers)
+            binding.followers.text = "$it $followers"
         })
     }
 
     fun totalRepos(reposUrl: String) {
         detailUserViewModel.setCountRepository(reposUrl)
         detailUserViewModel.getTotalUsersRepository().observe(this,{
-            binding.repository.text = "$it repository"
+            Log.d(TAG, "$it repository" )
+            val repository = getString(R.string.repository)
+            binding.repository.text = "$it $repository"
         })
     }
 
@@ -124,6 +130,5 @@ class DetailUserActivity : AppCompatActivity() {
             binding.progressBar.visibility = View.GONE
         }
     }
-
 
 }

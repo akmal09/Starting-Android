@@ -14,7 +14,7 @@ class UserLikedEntity(
     val id:Int = 0,
 
     @field:ColumnInfo(name="login")
-    val login: String,
+    val login: String?,
 
     @field:ColumnInfo(name="url")
     val url: String,

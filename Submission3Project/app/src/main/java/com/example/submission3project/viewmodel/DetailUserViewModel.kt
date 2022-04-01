@@ -31,7 +31,7 @@ class DetailUserViewModel: ViewModel() {
     fun setUserDetail(userData: String) {
         privateIsLoading.value = true
         val client = AsyncHttpClient()
-        client.addHeader("Authorization", "token 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")
+        client.addHeader("Authorization", "token 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")
         client.addHeader("User-Agent", "request")
         client.get(userData, object : AsyncHttpResponseHandler() {
             override fun onSuccess(statusCode: Int, headers: Array<out Header>?, responseBody: ByteArray) {
@@ -104,11 +104,11 @@ class DetailUserViewModel: ViewModel() {
                 Log.e(TAG, errorMessage)
             }
         })
-        accessFollowers.addHeader("Authorization", "token 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")
+        accessFollowers.addHeader("Authorization", "token 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")
         accessFollowers.addHeader("User-Agent","request")
     }
 
-    fun setCountFollowing(loginName:String) {
+    fun setCountFollowing(loginName:String?) {
         val followingAccess = ApiConfig.getApiService().getUsersFollowing(loginName)
         followingAccess.enqueue(object : Callback<List<UserDataObject>> {
             override fun onResponse(
@@ -164,19 +164,19 @@ class DetailUserViewModel: ViewModel() {
                 Log.e(TAG, errorMessage)
             }
         })
-        repoAccess.addHeader("Authorization", "token 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")
+        repoAccess.addHeader("Authorization", "token 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")
         repoAccess.addHeader("User-Agent", "request")
     }
 
-    fun getTotalUsersFollowing(): MutableLiveData<String> {
+    fun getTotalUsersFollowing(): LiveData<String> {
         return totalFollowingUserUrl
     }
 
-    fun getTotalUsersFollowers(): MutableLiveData<String> {
+    fun getTotalUsersFollowers(): LiveData<String> {
         return totalFollowersUserUrl
     }
 
-    fun getTotalUsersRepository(): MutableLiveData<String> {
+    fun getTotalUsersRepository(): LiveData<String> {
         return totalRepositoryUrl
     }
 

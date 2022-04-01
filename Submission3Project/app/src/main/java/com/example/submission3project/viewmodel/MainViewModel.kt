@@ -4,12 +4,9 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.example.submission3project.SettingsPreference
 import com.example.submission3project.data.api.ApiConfig
 import com.example.submission3project.data.api.ResponseData
 import com.example.submission3project.data.entity.UserLikedEntity
-import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
